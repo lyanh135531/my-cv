@@ -24,37 +24,66 @@
 .silicon-valley-style {
   padding: 40px;
   color: #1a1a1b;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 .cv-header {
-  margin-bottom: 25px;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 15px;
+  margin-bottom: 18px;
+  padding-bottom: 18px;
+  border-bottom: 1.5px solid #f1f5f9;
 }
 
 .cv-name {
-  font-family: 'Outfit', sans-serif;
-  font-size: 2.5rem;
+  font-family: "Outfit", sans-serif;
+  font-size: 2.4rem;
   font-weight: 800;
   margin: 0 0 10px 0;
-  letter-spacing: -1px;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
 }
 
-.cv-contact-info {
+.cv-contact-row {
   display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
+  justify-content: flex-start;
+  gap: 32px;
+  margin-top: 8px;
+}
+
+.contact-column {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   font-size: 0.9rem;
   color: #64748b;
+  transition: all 0.2s ease;
+}
+
+.contact-icon {
+  color: var(--accent-color, #64748b);
+  opacity: 0.8;
+}
+
+.social-link:hover {
+  color: var(--accent-color, #0f172a);
+  cursor: pointer;
+}
+
+.social-link:hover .contact-icon {
+  opacity: 1;
 }
 
 .cv-section {
-  margin-bottom: 20px;
+  margin-bottom: 16px;
 }
 
 .section-title {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
   font-size: 1rem;
   font-weight: 800;
   text-transform: uppercase;
@@ -78,6 +107,7 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+  margin-bottom: 4px;
 }
 
 .cv-item-title {
@@ -97,6 +127,12 @@
   font-size: 0.95rem;
   font-weight: 600;
   color: #64748b;
+  margin-bottom: 4px;
+}
+
+.cv-item-subtitle.tech-stack {
+  font-size: 0.85rem;
+  opacity: 0.8;
   margin-bottom: 8px;
 }
 
@@ -142,15 +178,16 @@
 /* --- Professional Print System (ATS-Friendly & 1-Page) --- */
 @media print {
   @page {
-    size: A4;
-    margin: 0;
+    size: 210mm auto;
+    margin: 5mm 6mm;
   }
 
   body * {
     visibility: hidden;
   }
 
-  .cv-document, .cv-document * {
+  .cv-document,
+  .cv-document * {
     visibility: visible;
   }
 
@@ -159,31 +196,32 @@
     left: 0;
     top: 0;
     width: 210mm !important;
-    height: 297mm !important;
+    min-height: unset !important;
+    height: auto !important;
     margin: 0 !important;
     padding: 0 !important;
     box-shadow: none !important;
     transform: none !important;
     background: white !important;
-    overflow: hidden !important;
-    page-break-after: avoid;
+    overflow: visible !important;
     print-color-adjust: exact;
     -webkit-print-color-adjust: exact;
   }
 
-  /* Force single page content */
+  /* Single long page — no page breaks */
   .cv-template {
-    height: 297mm;
+    height: auto;
+    min-height: unset;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    overflow: visible;
   }
 
   /* Specific template tweaks for perfect fit */
   .executive-style {
     height: 100% !important;
   }
-  
+
   .exe-body {
     flex: 1;
     overflow: hidden;

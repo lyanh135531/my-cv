@@ -9,7 +9,6 @@ import EducationForm from '../components/editor/EducationForm';
 import SkillsForm from '../components/editor/SkillsForm';
 import ProjectsForm from '../components/editor/ProjectsForm';
 import SocialLinksForm from '../components/editor/SocialLinksForm';
-import TemplateSelector from '../components/editor/TemplateSelector';
 
 interface EditorPageProps {
   onBack: () => void;
@@ -72,11 +71,6 @@ const EditorPage = ({ onBack }: EditorPageProps) => {
         </div>
         
         <div className="editor-form-container glass-panel">
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>Design & Template</h3>
-            <TemplateSelector />
-            
-            <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
-
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>1. Personal Information</h3>
             <PersonalInfoForm />
             
