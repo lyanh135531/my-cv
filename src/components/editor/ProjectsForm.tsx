@@ -114,8 +114,8 @@ const ProjectsForm = () => {
         ))}
       </AnimatePresence>
       
-      <button className="btn-secondary" onClick={handleAdd} style={{ width: '100%', padding: '14px', borderStyle: 'dashed', background: 'transparent', opacity: 0.6 }}>
-        <Plus size={18} style={{ marginRight: '8px' }} /> Add New Project
+      <button className="btn-add-item" onClick={handleAdd}>
+        <Plus size={18} /> Add New Project
       </button>
     </div>
   );

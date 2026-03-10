@@ -28,29 +28,30 @@ const SocialLinksForm = () => {
     <div className="form-section">
       <div className="items-list">
         {socialLinks.map((link) => (
-          <div key={link.id} className="item-card" style={{ display: 'flex', gap: '15px', alignItems: 'center' }}>
-            <div className="form-group" style={{ flex: 1, marginBottom: 0 }}>
+          <div key={link.id} className="item-card" style={{ display: 'flex', gap: '12px', alignItems: 'center', marginBottom: '12px' }}>
+            <div className="form-group" style={{ flex: 1 }}>
               <input
                 type="text"
                 className="glass-input"
+                style={{ padding: '10px 14px' }}
                 value={link.label}
                 onChange={(e) => updateSocialLink(link.id, { label: e.target.value })}
-                placeholder="Label (e.g., GitHub)"
+                placeholder="Label"
               />
             </div>
-            <div className="form-group" style={{ flex: 2, marginBottom: 0 }}>
+            <div className="form-group" style={{ flex: 2 }}>
               <input
                 type="text"
                 className="glass-input"
+                style={{ padding: '10px 14px' }}
                 value={link.url}
                 onChange={(e) => updateSocialLink(link.id, { url: e.target.value })}
-                placeholder="URL (e.g., github.com/username)"
+                placeholder="URL"
               />
             </div>
             <button
               onClick={() => removeSocialLink(link.id)}
-              className="btn btn-outline"
-              style={{ padding: '0.75rem', marginTop: '0' }}
+              className="icon-btn danger-hover"
               title="Remove Link"
             >
               <Trash2 size={18} />
@@ -59,43 +60,40 @@ const SocialLinksForm = () => {
         ))}
       </div>
 
-      <div className="form-grid mt-4" style={{ alignItems: 'end' }}>
+      <div className="form-grid" style={{ alignItems: 'end', marginTop: '1.5rem', background: 'rgba(255,255,255,0.02)', padding: '1.25rem', borderRadius: '14px', border: '1px solid rgba(255,255,255,0.05)' }}>
         <div className="form-group">
           <label>Platform / Label</label>
           <input
             type="text"
             className="glass-input"
-            placeholder="e.g., Medium, Dribbble"
+            style={{ padding: '10px 14px' }}
+            placeholder="e.g., Medium"
             value={newLabel}
             onChange={(e) => setNewLabel(e.target.value)}
-            onKeyPress={(e) => e.key === 'Enter' && handleAdd()}
           />
         </div>
         <div className="form-group">
           <label>Link / URL</label>
           <div style={{ position: 'relative' }}>
-            <LinkIcon size={16} style={{ position: 'absolute', top: '15px', left: '15px', opacity: 0.5 }} />
+            <LinkIcon size={14} style={{ position: 'absolute', top: '13px', left: '12px', opacity: 0.4 }} />
             <input
               type="text"
               className="glass-input"
-              style={{ paddingLeft: '40px' }}
-              placeholder="e.g., medium.com/@username"
+              style={{ paddingLeft: '36px', paddingTop: '10px', paddingBottom: '10px' }}
+              placeholder="e.g., medium.com/@user"
               value={newUrl}
               onChange={(e) => setNewUrl(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleAdd()}
             />
           </div>
         </div>
-        <div className="form-group" style={{ marginBottom: '8px' }}>
-          <button 
-            className="btn btn-primary" 
-            onClick={handleAdd}
-            disabled={!newLabel.trim() || !newUrl.trim()}
-            style={{ width: '100%' }}
-          >
-            <Plus size={18} /> Add Link
-          </button>
-        </div>
+        <button 
+          className="btn-primary" 
+          onClick={handleAdd}
+          disabled={!newLabel.trim() || !newUrl.trim()}
+          style={{ padding: '10px 16px', borderRadius: '10px', height: '42px', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px' }}
+        >
+          <Plus size={18} /> Add
+        </button>
       </div>
     </div>
   );

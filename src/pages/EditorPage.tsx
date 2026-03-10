@@ -1,6 +1,6 @@
 import { useRef, useState, useEffect } from 'react';
 import { useReactToPrint } from 'react-to-print';
-import { Download, ArrowLeft } from 'lucide-react';
+import { Download, ArrowLeft, Code } from 'lucide-react';
 import './EditorPage.css';
 import CVPreview from '../components/preview/CVPreview';
 import PersonalInfoForm from '../components/editor/PersonalInfoForm';
@@ -60,9 +60,21 @@ const EditorPage = ({ onBack }: EditorPageProps) => {
             <button onClick={onBack} className="icon-btn" title="Go Back">
               <ArrowLeft size={20} />
             </button>
+            <div style={{
+              width: '32px',
+              height: '32px',
+              background: 'linear-gradient(135deg, var(--accent-base), var(--accent-glow))',
+              borderRadius: '10px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              boxShadow: '0 4px 12px rgba(139, 92, 246, 0.3)'
+            }}>
+                <Code size={18} color="white" />
+            </div>
             <div>
-              <h2 className="text-gradient">Edit Resume</h2>
-              <p className="text-muted">Perfect your professional profile</p>
+              <h2 className="text-gradient" style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.5px' }}>ResumeAI</h2>
+              <p className="text-muted" style={{ fontSize: '0.75rem', marginTop: '-2px' }}>Professional Editor</p>
             </div>
           </div>
           <button onClick={() => handlePrint()} className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px' }}>
@@ -82,17 +94,17 @@ const EditorPage = ({ onBack }: EditorPageProps) => {
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>3. Work Experience</h3>
             <ExperienceForm />
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>4. Projects</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>3. Projects</h3>
             <ProjectsForm />
             
             <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>5. Education</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>4. Education</h3>
             <EducationForm />
             
             <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>6. Skills</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>5. Skills</h3>
             <SkillsForm />
         </div>
       </div>

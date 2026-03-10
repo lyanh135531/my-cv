@@ -44,9 +44,9 @@ label {
 
 .glass-input:focus {
   outline: none;
-  border-color: var(--border-focus);
-  background: rgba(255, 255, 255, 0.05);
-  box-shadow: 0 0 0 2px rgba(168, 85, 247, 0.1);
+  border-color: var(--accent-base);
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
 }
 
 .glass-input::placeholder {
@@ -77,35 +77,69 @@ textarea.glass-input {
   color: var(--text-primary);
 }
 
+.icon-btn.danger-hover {
+  color: rgba(244, 63, 94, 0.6);
+  opacity: 0.6;
+}
+
 .icon-btn.danger-hover:hover {
-  background: rgba(239, 68, 68, 0.2);
-  color: #ef4444;
+  background: rgba(244, 63, 94, 0.15);
+  color: #fb7185;
+  opacity: 1;
+  transform: scale(1.1);
 }
 
 .magic-wand-btn {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.2), rgba(217, 70, 239, 0.2));
-  border: 1px solid rgba(217, 70, 239, 0.4);
-  color: var(--accent-glow);
-  padding: 4px 10px;
-  border-radius: 999px;
-  font-size: 0.75rem;
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(217, 70, 239, 0.1));
+  border: 1px solid rgba(139, 92, 246, 0.3);
+  color: var(--text-primary);
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 0.8rem;
   font-weight: 600;
   cursor: pointer;
   display: flex;
   align-items: center;
-  gap: 4px;
-  transition: all var(--transition-fast);
+  gap: 6px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.magic-wand-btn:hover {
-  background: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(217, 70, 239, 0.4));
-  box-shadow: 0 0 10px rgba(217, 70, 239, 0.3);
-  transform: translateY(-1px);
+.magic-wand-btn:hover:not(:disabled) {
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(217, 70, 239, 0.2));
+  border-color: var(--accent-base);
+  box-shadow: 0 4px 15px rgba(139, 92, 246, 0.2);
+  transform: translateY(-2px);
 }
 
 .magic-wand-btn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+}
+
+.btn-add-item {
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.02);
+  border-radius: 14px;
+  color: var(--text-secondary);
+  font-weight: 600;
+  font-family: var(--font-heading);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  margin-top: 1rem;
+}
+
+.btn-add-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--accent-base);
+  color: var(--text-primary);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
 .spin-animation {

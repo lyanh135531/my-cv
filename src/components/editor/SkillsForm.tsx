@@ -31,8 +31,8 @@ const SkillsForm = () => {
             onChange={(e) => setNewSkill(e.target.value)}
             style={{ flex: 1 }}
          />
-         <button type="submit" className="btn-secondary flex-center" style={{ padding: '0 16px' }}>
-            <Plus size={18} /> Add
+         <button type="submit" className="btn-primary" style={{ padding: '0 24px', borderRadius: '12px' }}>
+            <Plus size={18} />
          </button>
       </form>
 
