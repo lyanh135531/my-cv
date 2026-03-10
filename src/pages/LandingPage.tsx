@@ -189,7 +189,7 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           <a href="#" style={{ color: 'var(--text-secondary)' }}>Terms of Service</a>
           <a href="#" style={{ color: 'var(--text-secondary)' }}>Contact Us</a>
         </div>
-        <p>&copy; 2026 ResumeAI. Built with passion for excellence.</p>
+        <p>&copy; 2026 ResumeAI. Designed and Built by Lian.</p>
       </footer>
 
       <ConfirmationModal 
