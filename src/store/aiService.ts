@@ -22,6 +22,16 @@ export const optimizeExperienceDescription = async (position: string, company: s
 - Được đánh giá cao về khả năng tư duy logic và tối ưu hóa trải nghiệm người dùng ("Wow" factor).`;
 };
 
+export const optimizeProjectDescription = async (name: string, description: string): Promise<string> => {
+  await new Promise(resolve => setTimeout(resolve, 1500));
+
+  if (!description.trim()) {
+    return `Phát triển hệ thống ${name || 'mới'} chuẩn Big Tech, tối ưu hóa trải nghiệm người dùng và hiệu năng xử lý dữ liệu.`;
+  }
+
+  return `Tối ưu hóa dự án ${name}: Áp dụng mô hình chuẩn để tăng tốc độ phản hồi lên 40%, xử lý hiệu quả 10.000+ yêu cầu mỗi giây và đảm bảo tính mở rộng cao cho tương lai.`;
+};
+
 /**
  * Tutorial for Real API Integration:
  * 

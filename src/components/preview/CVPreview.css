@@ -1,116 +1,109 @@
-/* Styling for the A4 Document itself - Clean, Minimalist suitable for Big Tech ATS */
-.cv-preview {
+/* Common CSS for CV Document Simulation (A4) */
+.cv-preview-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
   padding: 40px;
-  color: #1a1a1a;
+  overflow-y: auto;
+  background-color: #1a1a1c;
+}
+
+.cv-document {
+  width: 210mm; /* A4 Width */
+  min-height: 297mm; /* A4 Height */
   background: white;
-  min-height: 297mm;
-  font-family: var(--font-body);
-  line-height: 1.6;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform-origin: top center;
+  transition: transform 0.3s ease;
+  overflow: hidden;
+}
+
+/* Minimalist / Silicon Valley styles (Commonly used across simple templates) */
+.silicon-valley-style {
+  padding: 40px;
+  color: #1a1a1b;
+  font-family: 'Inter', sans-serif;
 }
 
 .cv-header {
-  margin-bottom: 30px;
-  border-bottom: 2px solid #000;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
   padding-bottom: 15px;
 }
 
 .cv-name {
-  font-family: var(--font-heading);
-  font-size: 32px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
   font-weight: 800;
-  text-transform: uppercase;
+  margin: 0 0 10px 0;
   letter-spacing: -1px;
-  margin-bottom: 5px;
-  color: #000;
 }
 
 .cv-contact-info {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 16px;
-  font-size: 10pt;
-  color: #4b5563;
-}
-
-.cv-contact-info span {
-  display: flex;
-  align-items: center;
-}
-
-.cv-contact-info span:not(:last-child)::after {
-  content: "•";
-  margin-left: 16px;
-  color: #9ca3af;
+  gap: 15px;
+  font-size: 0.9rem;
+  color: #64748b;
 }
 
 .cv-section {
   margin-bottom: 20px;
 }
 
-.cv-summary {
-  font-size: 10.5pt;
-  color: #374151;
-  text-align: justify;
-}
-
-.cv-section-title {
-  font-size: 14pt;
-  font-weight: 600;
-  color: #111827;
+.section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
   text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-bottom: 12px;
-  border-bottom: 1px solid #e5e7eb;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #eee;
   padding-bottom: 4px;
 }
 
-.cv-items {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+.cv-summary {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #334155;
 }
 
 .cv-item {
-  margin-bottom: 0;
+  margin-bottom: 18px;
 }
 
 .cv-item-header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin-bottom: 2px;
 }
 
 .cv-item-title {
-  font-size: 11.5pt;
-  font-weight: 600;
-  color: #111827;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin: 0;
 }
 
 .cv-item-date {
-  font-size: 10pt;
-  color: #4b5563;
+  font-size: 0.85rem;
+  color: #94a3b8;
   font-weight: 500;
 }
 
 .cv-item-subtitle {
-  font-size: 10.5pt;
-  font-style: italic;
-  color: #374151;
-  margin-bottom: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #64748b;
+  margin-bottom: 8px;
 }
 
 .cv-item-desc {
-  font-size: 10pt;
-  color: #374151;
-  padding-left: 16px;
-}
-
-.cv-placeholder {
-  color: #9ca3af;
-  font-style: italic;
-  font-size: 10pt;
+  font-size: 0.9rem;
+  color: #475569;
+  line-height: 1.5;
 }
 
 .cv-skills {
@@ -120,10 +113,85 @@
 }
 
 .cv-skill-tag {
-  background: #f3f4f6;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
   padding: 4px 10px;
   border-radius: 4px;
-  font-size: 9.5pt;
-  font-weight: 500;
-  color: #374151;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #475569;
+}
+
+/* Responsiveness for Preview */
+@media (max-width: 1024px) {
+  .cv-document {
+    transform: scale(0.85);
+  }
+}
+
+@media (max-width: 900px) {
+  .cv-document {
+    transform: scale(0.65);
+    width: 210mm;
+  }
+  .cv-preview-container {
+    padding: 10px;
+  }
+}
+
+/* --- Professional Print System (ATS-Friendly & 1-Page) --- */
+@media print {
+  @page {
+    size: A4;
+    margin: 0;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  .cv-document, .cv-document * {
+    visibility: visible;
+  }
+
+  .cv-document {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 210mm !important;
+    height: 297mm !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+    transform: none !important;
+    background: white !important;
+    overflow: hidden !important;
+    page-break-after: avoid;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  /* Force single page content */
+  .cv-template {
+    height: 297mm;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  /* Specific template tweaks for perfect fit */
+  .executive-style {
+    height: 100% !important;
+  }
+  
+  .exe-body {
+    flex: 1;
+    overflow: hidden;
+  }
+
+  /* Hide UI elements while printing */
+  .preview-container {
+    padding: 0 !important;
+    background: white !important;
+  }
 }

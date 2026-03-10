@@ -1,0 +1,157 @@
+/* CSS for Executive Template */
+.executive-style {
+  padding: 0;
+  color: #1a1a1b;
+  font-family: 'Inter', sans-serif;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-height: 297mm;
+}
+
+.exe-header {
+  padding: 40px;
+  background-color: #f8fafc;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.exe-name {
+  font-family: 'Outfit', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin: 0;
+  color: #0f172a;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+
+.exe-contact {
+  font-size: 0.9rem;
+  color: #475569;
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.exe-body {
+  display: flex;
+  flex: 1;
+}
+
+.exe-sidebar {
+  width: 280px;
+  flex-shrink: 0;
+  padding: 30px;
+  background-color: #f1f5f9;
+  border-right: 1px solid #e2e8f0;
+}
+
+.exe-main {
+  flex: 1;
+  padding: 30px 40px;
+  background: white;
+}
+
+.exe-section {
+  margin-bottom: 30px;
+}
+
+.exe-section .section-title {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #cbd5e1;
+  padding-bottom: 6px;
+}
+
+.exe-summary-text {
+  font-size: 0.95rem;
+  color: #334155;
+  text-align: justify;
+}
+
+.exe-skills-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.exe-skill-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.skill-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+.exe-edu-item {
+  margin-bottom: 15px;
+}
+
+.exe-edu-degree {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #1e293b;
+}
+
+.exe-edu-school {
+  font-size: 0.85rem;
+  color: #475569;
+}
+
+.exe-edu-date {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.exe-exp-item {
+  margin-bottom: 25px;
+}
+
+.exe-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+  gap: 15px;
+}
+
+.exe-item-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #0f172a;
+  flex: 1;
+}
+
+.exe-item-date {
+  font-size: 0.85rem;
+  color: #64748b;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.exe-item-company {
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 10px;
+  font-style: italic;
+}
+
+.exe-item-desc {
+  font-size: 0.95rem;
+  color: #334155;
+  padding-left: 15px;
+}

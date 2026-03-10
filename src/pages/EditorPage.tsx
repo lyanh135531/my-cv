@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { Download, ArrowLeft } from 'lucide-react';
 import './EditorPage.css';
@@ -7,13 +7,45 @@ import PersonalInfoForm from '../components/editor/PersonalInfoForm';
 import ExperienceForm from '../components/editor/ExperienceForm';
 import EducationForm from '../components/editor/EducationForm';
 import SkillsForm from '../components/editor/SkillsForm';
+import ProjectsForm from '../components/editor/ProjectsForm';
+import SocialLinksForm from '../components/editor/SocialLinksForm';
+import TemplateSelector from '../components/editor/TemplateSelector';
 
 interface EditorPageProps {
   onBack: () => void;
 }
 
+const useScaling = (containerRef: React.RefObject<HTMLDivElement | null>, targetRef: React.RefObject<HTMLDivElement | null>) => {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (containerRef.current && targetRef.current) {
+        const containerWidth = containerRef.current.offsetWidth - 64; // Minus padding
+        const targetWidth = 210 * 3.7795275591; // 210mm in pixels (96dpi)
+        
+        if (containerWidth < targetWidth) {
+          setScale(containerWidth / targetWidth);
+        } else {
+          setScale(1);
+        }
+      }
+    };
+
+    const resizeObserver = new ResizeObserver(handleResize);
+    if (containerRef.current) resizeObserver.observe(containerRef.current);
+    
+    handleResize();
+    return () => resizeObserver.disconnect();
+  }, [containerRef, targetRef]);
+
+  return scale;
+};
+
 const EditorPage = ({ onBack }: EditorPageProps) => {
   const componentRef = useRef<HTMLDivElement>(null);
+  const previewContainerRef = useRef<HTMLDivElement>(null);
+  const scale = useScaling(previewContainerRef, componentRef);
   
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
@@ -40,30 +72,45 @@ const EditorPage = ({ onBack }: EditorPageProps) => {
         </div>
         
         <div className="editor-form-container glass-panel">
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>Design & Template</h3>
+            <TemplateSelector />
+            
+            <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
+
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>1. Personal Information</h3>
             <PersonalInfoForm />
             
+            <h3 style={{ marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-hover)' }}>2. Professional Links</h3>
+            <SocialLinksForm />
+            
             <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>2. Work Experience</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>3. Work Experience</h3>
             <ExperienceForm />
             
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>4. Projects</h3>
+            <ProjectsForm />
+            
             <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>3. Education</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>5. Education</h3>
             <EducationForm />
             
             <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>4. Skills</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>6. Skills</h3>
             <SkillsForm />
         </div>
       </div>
 
       {/* Right Panel: Live Preview */}
       <div className="editor-right-panel">
-        <div className="preview-container">
-            <div className="cv-a4-canvas" ref={componentRef}>
+        <div className="preview-container" ref={previewContainerRef}>
+            <div 
+              className="cv-a4-canvas" 
+              ref={componentRef}
+              style={{ transform: `scale(${scale})` }}
+            >
                 <CVPreview />
             </div>
         </div>
