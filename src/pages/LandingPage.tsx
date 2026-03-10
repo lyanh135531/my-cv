@@ -1,13 +1,25 @@
 import { motion } from 'framer-motion';
-import { Code, Download, ShieldCheck, Sparkles } from 'lucide-react';
+import { Code, Download, ShieldCheck, Sparkles, RotateCcw } from 'lucide-react';
 import React from 'react';
 import HeroSection from '../components/HeroSection';
+import { useCVStore, initialData } from '../store/useCVStore';
+import ConfirmationModal from '../components/ui/ConfirmationModal';
 
 interface LandingPageProps {
   onStart: () => void;
 }
 
 const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
+  const [isResetModalOpen, setIsResetModalOpen] = React.useState(false);
+  const data = useCVStore((state) => state.data);
+  const hasData = JSON.stringify(data.personalInfo) !== JSON.stringify(initialData.personalInfo) || 
+                  data.experience.length > 2 || 
+                  data.projects.length > 2;
+
+  const handleReset = () => {
+    localStorage.removeItem('resume-ai-storage');
+    window.location.reload();
+  };
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -80,8 +92,19 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
           </div>
         </nav>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
-          <button className="btn-secondary" style={{ padding: '10px 20px', background: 'transparent', border: 'none' }}>Login</button>
-          <button onClick={onStart} className="btn-primary" style={{ padding: '10px 24px', borderRadius: '14px' }}>Get Started</button>
+          {hasData && (
+            <button 
+              onClick={() => setIsResetModalOpen(true)} 
+              className="icon-btn" 
+              title="Reset Progress"
+              style={{ width: '40px', height: '40px', borderRadius: '12px' }}
+            >
+              <RotateCcw size={18} />
+            </button>
+          )}
+          <button onClick={onStart} className="btn-primary" style={{ padding: '10px 24px', borderRadius: '12px' }}>
+            {hasData ? 'Resume Working' : 'Get Started'}
+          </button>
         </div>
       </header>
 
@@ -147,10 +170,14 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
         <section className="hero-container" style={{ minHeight: '60vh' }}>
           <div className="hero-content" style={{ textAlign: 'center', margin: '0 auto' }}>
-            <h2 style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>Ready to land your <span className="text-gradient">dream job</span>?</h2>
-            <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', marginBottom: '3rem' }}>Join 10,000+ professionals using ResumeAI to accelerate their careers.</p>
+            <h2 style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>
+              {hasData ? 'Ready to finish your' : 'Ready to land your'} <span className="text-gradient">{hasData ? 'masterpiece' : 'dream job'}</span>?
+            </h2>
+            <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', marginBottom: '3rem' }}>
+              {hasData ? 'You\'re just a few steps away from a world-class resume.' : 'Join 10,000+ professionals using ResumeAI to accelerate their careers.'}
+            </p>
             <button onClick={onStart} className="btn-primary shimmer" style={{ padding: '16px 40px', fontSize: '1.25rem', borderRadius: '18px' }}>
-              Create Your Resume Now - It's Free
+              {hasData ? 'Continue Editing Your Resume' : 'Create Your Resume Now - It\'s Free'}
             </button>
           </div>
         </section>
@@ -164,6 +191,16 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         </div>
         <p>&copy; 2026 ResumeAI. Built with passion for excellence.</p>
       </footer>
+
+      <ConfirmationModal 
+        isOpen={isResetModalOpen}
+        onClose={() => setIsResetModalOpen(false)}
+        onConfirm={handleReset}
+        title="Reset Progress?"
+        message="This will permanently delete all your resume data from this device. You will have to start from scratch."
+        confirmText="Yes, Reset"
+        cancelText="Keep Editing"
+      />
     </div>
   );
 };

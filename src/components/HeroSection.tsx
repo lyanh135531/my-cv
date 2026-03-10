@@ -1,11 +1,17 @@
 import { motion } from 'framer-motion';
-import { Zap, Sparkles, ShieldCheck } from 'lucide-react';
+import { useCVStore, initialData } from '../store/useCVStore';
+import { Zap, Sparkles, ShieldCheck, ArrowRight } from 'lucide-react';
 
 interface HeroSectionProps {
   onStart: () => void;
 }
 
 const HeroSection = ({ onStart }: HeroSectionProps) => {
+  const data = useCVStore((state) => state.data);
+  const hasData = JSON.stringify(data.personalInfo) !== JSON.stringify(initialData.personalInfo) || 
+                  data.experience.length > 2 || 
+                  data.projects.length > 2;
+
   return (
     <section className="hero-container">
       <div className="hero-content">
@@ -16,7 +22,7 @@ const HeroSection = ({ onStart }: HeroSectionProps) => {
           className="hero-badge"
         >
           <Sparkles size={14} />
-          <span>The Future of Professional Profiles</span>
+          <span>{hasData ? 'Welcome Back to Your Journey' : 'The Future of Professional Profiles'}</span>
         </motion.div>
 
         <motion.h1 
@@ -26,7 +32,7 @@ const HeroSection = ({ onStart }: HeroSectionProps) => {
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', lineHeight: 1.05, textAlign: 'inherit' }}
         >
-          Build Your <span className="text-gradient">Premium</span> <br /> 
+          {hasData ? 'Build Your' : 'Build Your'} <span className="text-gradient">{hasData ? 'Future' : 'Premium'}</span> <br /> 
           Resume with <span className="text-gradient">AI</span>
         </motion.h1>
 
@@ -37,8 +43,10 @@ const HeroSection = ({ onStart }: HeroSectionProps) => {
           transition={{ duration: 0.8, delay: 0.4 }}
           style={{ fontSize: '1.25rem', opacity: 0.7, maxWidth: '600px' }}
         >
-          Effortlessly create professional, high-impact resumes with our 
-          AI-powered builder. Designed for the standards of top-tier companies.
+          {hasData 
+            ? 'Success is persistent. Pick up exactly where you left off and finish your professional masterpiece.'
+            : 'Effortlessly create professional, high-impact resumes with our AI-powered builder. Designed for the standards of top-tier companies.'
+          }
         </motion.p>
 
         <motion.div 
@@ -48,8 +56,9 @@ const HeroSection = ({ onStart }: HeroSectionProps) => {
           transition={{ duration: 0.8, delay: 0.6 }}
           style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'inherit' }}
         >
-          <button onClick={onStart} className="btn-primary shimmer" style={{ alignSelf: 'flex-start', padding: '16px 36px', fontSize: '1.1rem', borderRadius: '16px' }}>
-            Start Building Now
+          <button onClick={onStart} className="btn-primary shimmer" style={{ alignSelf: 'flex-start', padding: '16px 36px', fontSize: '1.1rem', borderRadius: '16px', display: 'flex', alignItems: 'center', gap: '10px' }}>
+            {hasData ? 'Continue Your Progress' : 'Start Building Now'}
+            {hasData && <ArrowRight size={20} />}
           </button>
           <div className="hero-features" style={{ display: 'flex', gap: '2rem', opacity: 0.6 }}>
             <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

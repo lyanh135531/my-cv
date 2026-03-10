@@ -1,6 +1,8 @@
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 
 export interface Experience {
+// ... (rest of interfaces remain same, just wrapping the store)
   id: string;
   company: string;
   position: string;
@@ -81,7 +83,7 @@ interface CVStore {
   setThemeColor: (color: string) => void;
 }
 
-const initialData: CVData = {
+export const initialData: CVData = {
   personalInfo: {
     fullName: 'Johnathan Doe',
     email: 'johnathan.dev@techlabs.io',
@@ -150,150 +152,158 @@ const initialData: CVData = {
   }
 };
 
-export const useCVStore = create<CVStore>((set) => ({
-  data: initialData,
-  
-  updatePersonalInfo: (info) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        personalInfo: { ...state.data.personalInfo, ...info },
-      },
-    })),
+export const useCVStore = create<CVStore>()(
+  persist(
+    (set) => ({
+      data: initialData,
+      
+      updatePersonalInfo: (info) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            personalInfo: { ...state.data.personalInfo, ...info },
+          },
+        })),
+        
+      addExperience: (exp) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            experience: [...state.data.experience, exp],
+          },
+        })),
+        
+      updateExperience: (id, updatedExp) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            experience: state.data.experience.map((exp) =>
+              exp.id === id ? { ...exp, ...updatedExp } : exp
+            ),
+          },
+        })),
+        
+      removeExperience: (id) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            experience: state.data.experience.filter((exp) => exp.id !== id),
+          },
+        })),
     
-  addExperience: (exp) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        experience: [...state.data.experience, exp],
-      },
-    })),
+      addEducation: (edu) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            education: [...state.data.education, edu],
+          },
+        })),
+        
+      updateEducation: (id, updatedEdu) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            education: state.data.education.map((edu) =>
+              edu.id === id ? { ...edu, ...updatedEdu } : edu
+            ),
+          },
+        })),
+        
+      removeEducation: (id) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            education: state.data.education.filter((edu) => edu.id !== id),
+          },
+        })),
     
-  updateExperience: (id, updatedExp) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        experience: state.data.experience.map((exp) =>
-          exp.id === id ? { ...exp, ...updatedExp } : exp
-        ),
-      },
-    })),
+      addProject: (project) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            projects: [...state.data.projects, project],
+          },
+        })),
+        
+      updateProject: (id, updatedProject) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            projects: state.data.projects.map((project) =>
+              project.id === id ? { ...project, ...updatedProject } : project
+            ),
+          },
+        })),
+        
+      removeProject: (id) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            projects: state.data.projects.filter((project) => project.id !== id),
+          },
+        })),
     
-  removeExperience: (id) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        experience: state.data.experience.filter((exp) => exp.id !== id),
-      },
-    })),
-
-  addEducation: (edu) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        education: [...state.data.education, edu],
-      },
-    })),
+      addSocialLink: (link) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            socialLinks: [...state.data.socialLinks, link],
+          },
+        })),
+        
+      updateSocialLink: (id, updatedLink) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            socialLinks: state.data.socialLinks.map((link) =>
+              link.id === id ? { ...link, ...updatedLink } : link
+            ),
+          },
+        })),
+        
+      removeSocialLink: (id) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            socialLinks: state.data.socialLinks.filter((link) => link.id !== id),
+          },
+        })),
     
-  updateEducation: (id, updatedEdu) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        education: state.data.education.map((edu) =>
-          edu.id === id ? { ...edu, ...updatedEdu } : edu
-        ),
-      },
-    })),
+      addSkill: (skill) =>
+         set((state) => ({
+          data: {
+            ...state.data,
+            skills: [...state.data.skills, skill],
+          },
+        })),
     
-  removeEducation: (id) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        education: state.data.education.filter((edu) => edu.id !== id),
-      },
-    })),
-
-  addProject: (project) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        projects: [...state.data.projects, project],
-      },
-    })),
+      removeSkill: (id) =>
+         set((state) => ({
+          data: {
+            ...state.data,
+            skills: state.data.skills.filter((skill) => skill.id !== id),
+          },
+        })),
     
-  updateProject: (id, updatedProject) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        projects: state.data.projects.map((project) =>
-          project.id === id ? { ...project, ...updatedProject } : project
-        ),
-      },
-    })),
+      setTemplate: (templateId) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            metadata: { ...state.data.metadata, templateId },
+          },
+        })),
     
-  removeProject: (id) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        projects: state.data.projects.filter((project) => project.id !== id),
-      },
-    })),
-
-  addSocialLink: (link) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        socialLinks: [...state.data.socialLinks, link],
-      },
-    })),
-    
-  updateSocialLink: (id, updatedLink) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        socialLinks: state.data.socialLinks.map((link) =>
-          link.id === id ? { ...link, ...updatedLink } : link
-        ),
-      },
-    })),
-    
-  removeSocialLink: (id) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        socialLinks: state.data.socialLinks.filter((link) => link.id !== id),
-      },
-    })),
-
-  addSkill: (skill) =>
-     set((state) => ({
-      data: {
-        ...state.data,
-        skills: [...state.data.skills, skill],
-      },
-    })),
-
-  removeSkill: (id) =>
-     set((state) => ({
-      data: {
-        ...state.data,
-        skills: state.data.skills.filter((skill) => skill.id !== id),
-      },
-    })),
-
-  setTemplate: (templateId) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        metadata: { ...state.data.metadata, templateId },
-      },
-    })),
-
-  setThemeColor: (themeColor) =>
-    set((state) => ({
-      data: {
-        ...state.data,
-        metadata: { ...state.data.metadata, themeColor },
-      },
-    })),
-}));
+      setThemeColor: (themeColor) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            metadata: { ...state.data.metadata, themeColor },
+          },
+        })),
+    }),
+    {
+      name: 'resume-ai-storage',
+      storage: createJSONStorage(() => localStorage),
+    }
+  )
+);
