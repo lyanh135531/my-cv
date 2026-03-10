@@ -1,0 +1,129 @@
+/* Styling for the A4 Document itself - Clean, Minimalist suitable for Big Tech ATS */
+.cv-preview {
+  padding: 40px;
+  color: #1a1a1a;
+  background: white;
+  min-height: 297mm;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+.cv-header {
+  margin-bottom: 30px;
+  border-bottom: 2px solid #000;
+  padding-bottom: 15px;
+}
+
+.cv-name {
+  font-family: var(--font-heading);
+  font-size: 32px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+  margin-bottom: 5px;
+  color: #000;
+}
+
+.cv-contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+  font-size: 10pt;
+  color: #4b5563;
+}
+
+.cv-contact-info span {
+  display: flex;
+  align-items: center;
+}
+
+.cv-contact-info span:not(:last-child)::after {
+  content: "•";
+  margin-left: 16px;
+  color: #9ca3af;
+}
+
+.cv-section {
+  margin-bottom: 20px;
+}
+
+.cv-summary {
+  font-size: 10.5pt;
+  color: #374151;
+  text-align: justify;
+}
+
+.cv-section-title {
+  font-size: 14pt;
+  font-weight: 600;
+  color: #111827;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 4px;
+}
+
+.cv-items {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cv-item {
+  margin-bottom: 0;
+}
+
+.cv-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 2px;
+}
+
+.cv-item-title {
+  font-size: 11.5pt;
+  font-weight: 600;
+  color: #111827;
+}
+
+.cv-item-date {
+  font-size: 10pt;
+  color: #4b5563;
+  font-weight: 500;
+}
+
+.cv-item-subtitle {
+  font-size: 10.5pt;
+  font-style: italic;
+  color: #374151;
+  margin-bottom: 6px;
+}
+
+.cv-item-desc {
+  font-size: 10pt;
+  color: #374151;
+  padding-left: 16px;
+}
+
+.cv-placeholder {
+  color: #9ca3af;
+  font-style: italic;
+  font-size: 10pt;
+}
+
+.cv-skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.cv-skill-tag {
+  background: #f3f4f6;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 9.5pt;
+  font-weight: 500;
+  color: #374151;
+}
