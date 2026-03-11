@@ -6,7 +6,7 @@ interface TemplateProps {
 }
 
 const SiliconValley = ({ data }: TemplateProps) => {
-  const { personalInfo, experience, education, projects, skills, metadata } = data;
+  const { personalInfo, experience, education, projects, skills, languages = [], metadata } = data;
   const themeColor = metadata.themeColor || '#000000';
 
   const getSocialIcon = (label: string) => {
@@ -73,6 +73,19 @@ const SiliconValley = ({ data }: TemplateProps) => {
           ))}
         </div>
       </section>
+
+      {languages && languages.length > 0 && (
+        <section className="cv-section">
+          <h3 className="section-title" style={{ borderColor: themeColor }}>Languages</h3>
+          <div className="cv-skills">
+            {languages.map(lang => (
+              <span key={lang.id} className="cv-skill-tag">
+                <strong>{lang.name}</strong> • {lang.proficiency}
+              </span>
+            ))}
+          </div>
+        </section>
+      )}
 
       <section className="cv-section">
         <h3 className="section-title" style={{ borderColor: themeColor }}>Professional Experience</h3>

@@ -24,6 +24,12 @@ export interface Skill {
   name: string;
 }
 
+export interface Language {
+  id: string;
+  name: string;
+  proficiency: string;
+}
+
 export interface Project {
   id: string;
   name: string;
@@ -51,6 +57,7 @@ export interface CVData {
   education: Education[];
   projects: Project[];
   skills: Skill[];
+  languages: Language[];
   metadata: {
     templateId: string;
     themeColor: string;
@@ -78,6 +85,10 @@ interface CVStore {
   
   addSkill: (skill: Skill) => void;
   removeSkill: (id: string) => void;
+
+  addLanguage: (lang: Language) => void;
+  updateLanguage: (id: string, lang: Partial<Language>) => void;
+  removeLanguage: (id: string) => void;
 
   setTemplate: (templateId: string) => void;
   setThemeColor: (color: string) => void;
@@ -145,6 +156,10 @@ export const initialData: CVData = {
     { id: '3', name: 'AWS / Kubernetes / Docker' },
     { id: '4', name: 'System Design / Microservices' },
     { id: '5', name: 'Redis / PostgreSQL / MongoDB' }
+  ],
+  languages: [
+    { id: '1', name: 'English', proficiency: 'Native/Bilingual' },
+    { id: '2', name: 'Spanish', proficiency: 'Professional Working' }
   ],
   metadata: {
     templateId: 'silicon-valley',
@@ -285,6 +300,32 @@ export const useCVStore = create<CVStore>()(
           },
         })),
     
+      addLanguage: (lang) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            languages: [...(state.data.languages || []), lang],
+          },
+        })),
+        
+      updateLanguage: (id, updatedLang) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            languages: (state.data.languages || []).map((lang) =>
+              lang.id === id ? { ...lang, ...updatedLang } : lang
+            ),
+          },
+        })),
+        
+      removeLanguage: (id) =>
+        set((state) => ({
+          data: {
+            ...state.data,
+            languages: (state.data.languages || []).filter((lang) => lang.id !== id),
+          },
+        })),
+
       setTemplate: (templateId) =>
         set((state) => ({
           data: {
@@ -304,6 +345,24 @@ export const useCVStore = create<CVStore>()(
     {
       name: 'resume-ai-storage',
       storage: createJSONStorage(() => localStorage),
+      merge: (persistedState: unknown, currentState: CVStore) => {
+        // Handle migration of older state that didn't have languages
+        const persisted = persistedState as Partial<CVStore>;
+        const mergedData = {
+          ...currentState.data,
+          ...(persisted?.data || {}),
+        };
+        
+        if (!mergedData.languages) {
+          mergedData.languages = [];
+        }
+        
+        return {
+          ...currentState,
+          ...(persistedState as Partial<CVStore>),
+          data: mergedData,
+        };
+      },
     }
   )
 );

@@ -9,6 +9,7 @@ import EducationForm from '../components/editor/EducationForm';
 import SkillsForm from '../components/editor/SkillsForm';
 import ProjectsForm from '../components/editor/ProjectsForm';
 import SocialLinksForm from '../components/editor/SocialLinksForm';
+import LanguagesForm from '../components/editor/LanguagesForm';
 
 interface EditorPageProps {
   onBack: () => void;
@@ -106,6 +107,11 @@ const EditorPage = ({ onBack }: EditorPageProps) => {
             
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>5. Skills</h3>
             <SkillsForm />
+            
+            <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
+            
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>6. Languages</h3>
+            <LanguagesForm />
         </div>
       </div>
 
