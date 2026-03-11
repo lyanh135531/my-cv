@@ -3,6 +3,7 @@ import { Plus, Trash2, Wand2, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { optimizeProjectDescription } from '../../store/aiService';
 import { useState } from 'react';
+import RichTextEditor from '../ui/RichTextEditor';
 import './FormInputs.css';
 
 const ProjectsForm = () => {
@@ -101,12 +102,11 @@ const ProjectsForm = () => {
                           <span>{loadingId === project.id ? 'Optimizing...' : 'AI Enhance'}</span>
                       </button>
                   </div>
-                  <textarea 
-                    className="glass-input" 
-                    rows={4}
-                    placeholder="- Leveraged FFmpeg and Go to achieve 3x faster processing...&#10;- Reduced latency by 40%..."
+                  <RichTextEditor
                     value={project.description}
-                    onChange={(e) => updateProject(project.id, { description: e.target.value })}
+                    onChange={(val) => updateProject(project.id, { description: val })}
+                    placeholder="- Leveraged FFmpeg and Go to achieve 3x faster processing...&#10;- Reduced latency by 40%..."
+                    minHeight="110px"
                   />
                 </div>
               </div>

@@ -1,0 +1,122 @@
+/* Rich Text Editor Wrapper */
+.rte-wrapper {
+  padding: 0 !important;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Toolbar */
+.rte-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--border-light);
+  background: rgba(255, 255, 255, 0.02);
+  flex-shrink: 0;
+}
+
+.rte-tool-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.rte-tool-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: var(--text-primary);
+  border-color: var(--border-light);
+}
+
+.rte-tool-btn.is-active {
+  background: rgba(139, 92, 246, 0.2);
+  color: var(--accent-hover);
+  border-color: rgba(139, 92, 246, 0.35);
+}
+
+.rte-divider {
+  width: 1px;
+  height: 18px;
+  background: var(--border-light);
+  margin: 0 4px;
+}
+
+/* Editor Content Area */
+.rte-editor-content {
+  padding: 12px 14px;
+  outline: none;
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.7;
+  overflow-y: auto;
+}
+
+/* ProseMirror focus */
+.ProseMirror:focus {
+  outline: none;
+}
+
+/* Placeholder */
+.ProseMirror.rte-is-empty:first-child::before {
+  content: attr(data-placeholder);
+  color: var(--text-muted);
+  pointer-events: none;
+  float: left;
+  height: 0;
+}
+
+/* Formatted content inside editor */
+.rte-editor-content ul,
+.ProseMirror ul {
+  padding-left: 1.4rem;
+  list-style-type: disc;
+}
+
+.rte-editor-content ol,
+.ProseMirror ol {
+  padding-left: 1.4rem;
+  list-style-type: decimal;
+}
+
+.rte-editor-content li,
+.ProseMirror li {
+  margin-bottom: 2px;
+}
+
+.rte-editor-content p,
+.ProseMirror p {
+  margin-bottom: 0.3rem;
+}
+
+.rte-editor-content p:last-child,
+.ProseMirror p:last-child {
+  margin-bottom: 0;
+}
+
+.rte-editor-content strong,
+.ProseMirror strong {
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.rte-editor-content em,
+.ProseMirror em {
+  font-style: italic;
+}
+
+.rte-editor-content u,
+.ProseMirror u {
+  text-decoration: underline;
+}

@@ -1,4 +1,5 @@
 import { useCVStore } from '../../store/useCVStore';
+import RichTextEditor from '../ui/RichTextEditor';
 import './FormInputs.css';
 
 const PersonalInfoForm = () => {
@@ -54,13 +55,11 @@ const PersonalInfoForm = () => {
         </div>
         <div className="form-group span-2">
           <label htmlFor="summary">Professional Summary</label>
-          <textarea 
-            id="summary"
-            className="glass-input" 
-            rows={4}
-            placeholder="Briefly describe your career goals and highlights..."
+          <RichTextEditor
             value={personalInfo.summary}
-            onChange={(e) => updatePersonalInfo({ summary: e.target.value })}
+            onChange={(val) => updatePersonalInfo({ summary: val })}
+            placeholder="Briefly describe your career goals and highlights..."
+            minHeight="110px"
           />
         </div>
       </div>

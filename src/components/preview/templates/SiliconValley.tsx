@@ -61,7 +61,7 @@ const SiliconValley = ({ data }: TemplateProps) => {
 
       {personalInfo.summary && (
         <section className="cv-section">
-          <p className="cv-summary">{personalInfo.summary}</p>
+          <div className="cv-summary" dangerouslySetInnerHTML={{ __html: personalInfo.summary }} />
         </section>
       )}
 
@@ -84,7 +84,7 @@ const SiliconValley = ({ data }: TemplateProps) => {
                 <span className="cv-item-date">{exp.startDate} - {exp.endDate}</span>
               </div>
               <div className="cv-item-subtitle">{exp.company}</div>
-              <div className="cv-item-desc" dangerouslySetInnerHTML={{ __html: exp.description.replace(/\n/g, '<br/>') }}></div>
+              <div className="cv-item-desc" dangerouslySetInnerHTML={{ __html: exp.description }}></div>
             </div>
           ))}
         </div>
@@ -109,7 +109,7 @@ const SiliconValley = ({ data }: TemplateProps) => {
                     Technologies: {project.technologies.join(', ')}
                   </div>
                 )}
-                <div className="cv-item-desc" dangerouslySetInnerHTML={{ __html: project.description.replace(/\n/g, '<br/>') }}></div>
+                <div className="cv-item-desc" dangerouslySetInnerHTML={{ __html: project.description }}></div>
               </div>
             ))}
           </div>

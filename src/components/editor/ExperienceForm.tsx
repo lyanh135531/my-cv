@@ -3,6 +3,7 @@ import { Plus, Trash2, Wand2, Loader2 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { optimizeExperienceDescription } from '../../store/aiService';
 import { useState } from 'react';
+import RichTextEditor from '../ui/RichTextEditor';
 import './FormInputs.css';
 
 const ExperienceForm = () => {
@@ -112,12 +113,11 @@ const ExperienceForm = () => {
                           <span>{loadingId === exp.id ? 'Optimizing...' : 'AI Enhance'}</span>
                       </button>
                   </div>
-                  <textarea 
-                    className="glass-input" 
-                    rows={5}
-                    placeholder="- Led cross-functional team...&#10;- Improved performance by..."
+                  <RichTextEditor
                     value={exp.description}
-                    onChange={(e) => updateExperience(exp.id, { description: e.target.value })}
+                    onChange={(val) => updateExperience(exp.id, { description: val })}
+                    placeholder="- Led cross-functional team...&#10;- Improved performance by..."
+                    minHeight="130px"
                   />
                 </div>
               </div>

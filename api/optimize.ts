@@ -1,10 +1,11 @@
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { VercelRequest, VercelResponse } from "@vercel/node";
 
 export const config = {
   maxDuration: 30, // Gemini can take a few seconds
 };
 
-export default async function handler(req: any, res: any) {
+export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Only allow POST requests
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Method not allowed' });
@@ -51,8 +52,9 @@ export default async function handler(req: any, res: any) {
     const text = result.response.text();
 
     return res.status(200).json({ text: text.trim() });
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("Gemini API Error:", error);
-    return res.status(500).json({ error: 'Error calling Gemini API', details: error.message });
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    return res.status(500).json({ error: 'Error calling Gemini API', details: errorMessage });
   }
 }

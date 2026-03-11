@@ -142,6 +142,36 @@
   line-height: 1.5;
 }
 
+/* Rich text list styles inside preview */
+.cv-item-desc ul,
+.cv-summary ul {
+  padding-left: 1.2rem;
+  list-style-type: disc;
+  margin: 2px 0;
+}
+
+.cv-item-desc ol,
+.cv-summary ol {
+  padding-left: 1.2rem;
+  list-style-type: decimal;
+  margin: 2px 0;
+}
+
+.cv-item-desc li,
+.cv-summary li {
+  margin-bottom: 1px;
+}
+
+.cv-item-desc p,
+.cv-summary p {
+  margin: 0 0 2px 0;
+}
+
+.cv-item-desc p:last-child,
+.cv-summary p:last-child {
+  margin-bottom: 0;
+}
+
 .cv-skills {
   display: flex;
   flex-wrap: wrap;
