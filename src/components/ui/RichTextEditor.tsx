@@ -53,7 +53,7 @@ const RichTextEditor = ({ value, onChange, placeholder = 'Nhập nội dung...',
     if (value !== currentHtml) {
       // Only set if the value is different to avoid cursor jump
       const { from, to } = editor.state.selection;
-      editor.commands.setContent(value || '', false);
+      editor.commands.setContent(value || '', { emitUpdate: false });
       try {
         editor.commands.setTextSelection({ from, to });
       } catch {
