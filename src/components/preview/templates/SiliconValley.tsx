@@ -1,11 +1,13 @@
 import { Mail, Phone, MapPin, Github, Linkedin, Globe } from 'lucide-react';
 import type { CVData } from '../../../store/useCVStore';
+import { useTranslation } from 'react-i18next';
 
 interface TemplateProps {
   data: CVData;
 }
 
 const SiliconValley = ({ data }: TemplateProps) => {
+  const { t } = useTranslation();
   const { personalInfo, experience, education, projects, skills, languages = [], metadata } = data;
   const themeColor = metadata.themeColor || '#000000';
 
@@ -66,7 +68,7 @@ const SiliconValley = ({ data }: TemplateProps) => {
       )}
 
       <section className="cv-section">
-        <h3 className="section-title" style={{ borderColor: themeColor }}>Skills</h3>
+        <h3 className="section-title" style={{ borderColor: themeColor }}>{t('cv.skills')}</h3>
         <div className="cv-skills">
           {skills.map(skill => (
             <span key={skill.id} className="cv-skill-tag">{skill.name}</span>
@@ -76,7 +78,7 @@ const SiliconValley = ({ data }: TemplateProps) => {
 
       {languages && languages.length > 0 && (
         <section className="cv-section">
-          <h3 className="section-title" style={{ borderColor: themeColor }}>Languages</h3>
+          <h3 className="section-title" style={{ borderColor: themeColor }}>{t('cv.languages')}</h3>
           <div className="cv-skills">
             {languages.map(lang => (
               <span key={lang.id} className="cv-skill-tag">
@@ -88,7 +90,7 @@ const SiliconValley = ({ data }: TemplateProps) => {
       )}
 
       <section className="cv-section">
-        <h3 className="section-title" style={{ borderColor: themeColor }}>Professional Experience</h3>
+        <h3 className="section-title" style={{ borderColor: themeColor }}>{t('cv.experience')}</h3>
         <div className="cv-items">
           {experience.map((exp) => (
             <div key={exp.id} className="cv-item">
@@ -105,7 +107,7 @@ const SiliconValley = ({ data }: TemplateProps) => {
 
       {projects && projects.length > 0 && (
         <section className="cv-section">
-          <h3 className="section-title" style={{ borderColor: themeColor }}>Notable Projects</h3>
+          <h3 className="section-title" style={{ borderColor: themeColor }}>{t('cv.projects')}</h3>
           <div className="cv-items">
             {projects.map((project) => (
               <div key={project.id} className="cv-item">
@@ -119,7 +121,7 @@ const SiliconValley = ({ data }: TemplateProps) => {
                 </div>
                 {project.technologies && project.technologies.length > 0 && (
                   <div className="cv-item-subtitle tech-stack">
-                    Technologies: {project.technologies.join(', ')}
+                    {t('cv.technologies')}: {project.technologies.join(', ')}
                   </div>
                 )}
                 <div className="cv-item-desc" dangerouslySetInnerHTML={{ __html: project.description }}></div>
@@ -130,7 +132,7 @@ const SiliconValley = ({ data }: TemplateProps) => {
       )}
 
       <section className="cv-section">
-        <h3 className="section-title" style={{ borderColor: themeColor }}>Education</h3>
+        <h3 className="section-title" style={{ borderColor: themeColor }}>{t('cv.education')}</h3>
         <div className="cv-items">
           {education.map((edu) => (
             <div key={edu.id} className="cv-item">

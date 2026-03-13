@@ -1,12 +1,14 @@
 import { motion } from 'framer-motion';
 import { useCVStore, initialData } from '../store/useCVStore';
 import { Zap, Sparkles, ShieldCheck, ArrowRight } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 interface HeroSectionProps {
   onStart: () => void;
 }
 
 const HeroSection = ({ onStart }: HeroSectionProps) => {
+  const { t } = useTranslation();
   const data = useCVStore((state) => state.data);
   const hasData = JSON.stringify(data.personalInfo) !== JSON.stringify(initialData.personalInfo) || 
                   data.experience.length > 2 || 
@@ -22,7 +24,7 @@ const HeroSection = ({ onStart }: HeroSectionProps) => {
           className="hero-badge"
         >
           <Sparkles size={14} />
-          <span>{hasData ? 'Welcome Back to Your Journey' : 'The Future of Professional Profiles'}</span>
+          <span>{hasData ? t('hero.welcomeBack') : t('hero.futureProfiles')}</span>
         </motion.div>
 
         <motion.h1 
@@ -32,8 +34,8 @@ const HeroSection = ({ onStart }: HeroSectionProps) => {
           transition={{ duration: 0.8, delay: 0.2 }}
           style={{ fontSize: 'clamp(2.5rem, 8vw, 5rem)', lineHeight: 1.05, textAlign: 'inherit' }}
         >
-          {hasData ? 'Build Your' : 'Build Your'} <span className="text-gradient">{hasData ? 'Future' : 'Premium'}</span> <br /> 
-          Resume with <span className="text-gradient">AI</span>
+          {t('hero.buildYour')} <span className="text-gradient">{hasData ? t('hero.future') : t('hero.premium')}</span> <br /> 
+          {t('hero.resumeWithAI')}
         </motion.h1>
 
         <motion.p 
@@ -43,10 +45,7 @@ const HeroSection = ({ onStart }: HeroSectionProps) => {
           transition={{ duration: 0.8, delay: 0.4 }}
           style={{ fontSize: '1.25rem', opacity: 0.7, maxWidth: '600px' }}
         >
-          {hasData 
-            ? 'Success is persistent. Pick up exactly where you left off and finish your professional masterpiece.'
-            : 'Effortlessly create professional, high-impact resumes with our AI-powered builder. Designed for the standards of top-tier companies.'
-          }
+          {hasData ? t('hero.subtitleHasData') : t('hero.subtitleNoData')}
         </motion.p>
 
         <motion.div 
@@ -57,15 +56,15 @@ const HeroSection = ({ onStart }: HeroSectionProps) => {
           style={{ display: 'flex', flexDirection: 'column', gap: '2rem', alignItems: 'inherit' }}
         >
           <button onClick={onStart} className="btn-primary shimmer" style={{ alignSelf: 'flex-start', padding: '16px 36px', fontSize: '1.1rem', borderRadius: '16px', display: 'flex', alignItems: 'center', gap: '10px' }}>
-            {hasData ? 'Continue Your Progress' : 'Start Building Now'}
+            {hasData ? t('hero.btnContinueProgress') : t('hero.btnStartBuilding')}
             {hasData && <ArrowRight size={20} />}
           </button>
           <div className="hero-features" style={{ display: 'flex', gap: '2rem', opacity: 0.6 }}>
             <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <Zap size={18} color="var(--accent-base)" /> <span>Smart AI Assistant</span>
+              <Zap size={18} color="var(--accent-base)" /> <span>{t('hero.smartAIAssistant')}</span>
             </div>
             <div className="feature-item" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-              <ShieldCheck size={18} color="var(--accent-base)" /> <span>ATS Friendly</span>
+              <ShieldCheck size={18} color="var(--accent-base)" /> <span>{t('hero.atsFriendly')}</span>
             </div>
           </div>
         </motion.div>

@@ -1,6 +1,7 @@
 import { useRef, useState, useEffect } from 'react';
 import { useReactToPrint } from 'react-to-print';
 import { Download, ArrowLeft, Code } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 import './EditorPage.css';
 import CVPreview from '../components/preview/CVPreview';
 import PersonalInfoForm from '../components/editor/PersonalInfoForm';
@@ -10,6 +11,7 @@ import SkillsForm from '../components/editor/SkillsForm';
 import ProjectsForm from '../components/editor/ProjectsForm';
 import SocialLinksForm from '../components/editor/SocialLinksForm';
 import LanguagesForm from '../components/editor/LanguagesForm';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 interface EditorPageProps {
   onBack: () => void;
@@ -43,6 +45,7 @@ const useScaling = (containerRef: React.RefObject<HTMLDivElement | null>, target
 };
 
 const EditorPage = ({ onBack }: EditorPageProps) => {
+  const { t } = useTranslation();
   const componentRef = useRef<HTMLDivElement>(null);
   const previewContainerRef = useRef<HTMLDivElement>(null);
   const scale = useScaling(previewContainerRef, componentRef);
@@ -58,7 +61,7 @@ const EditorPage = ({ onBack }: EditorPageProps) => {
       <div className="editor-left-panel">
         <div className="editor-header">
           <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-            <button onClick={onBack} className="icon-btn" title="Go Back">
+            <button onClick={onBack} className="icon-btn" title={t('editor.goBack')}>
               <ArrowLeft size={20} />
             </button>
             <div style={{
@@ -74,43 +77,44 @@ const EditorPage = ({ onBack }: EditorPageProps) => {
                 <Code size={18} color="white" />
             </div>
             <div>
-              <h2 className="text-gradient" style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.5px' }}>ResumeAI</h2>
-              <p className="text-muted" style={{ fontSize: '0.75rem', marginTop: '-2px' }}>Professional Editor</p>
+              <h2 className="text-gradient" style={{ margin: 0, fontSize: '1.25rem', fontWeight: 800, letterSpacing: '-0.5px' }}>{t('editor.resumeAI')}</h2>
+              <p className="text-muted" style={{ fontSize: '0.75rem', marginTop: '-2px' }}>{t('editor.professionalEditor')}</p>
             </div>
+            <LanguageSwitcher />
           </div>
           <button onClick={() => handlePrint()} className="btn-primary" style={{ display: 'flex', alignItems: 'center', gap: '8px', padding: '10px 20px' }}>
-            <Download size={18} /> Download PDF
+            <Download size={18} /> {t('editor.downloadPDF')}
           </button>
         </div>
         
         <div className="editor-form-container glass-panel">
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>1. Personal Information</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>{t('editor.sectionPersonalInfo')}</h3>
             <PersonalInfoForm />
             
-            <h3 style={{ marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-hover)' }}>2. Professional Links</h3>
+            <h3 style={{ marginBottom: '1.5rem', marginTop: '2rem', color: 'var(--accent-hover)' }}>{t('editor.sectionLinks')}</h3>
             <SocialLinksForm />
             
             <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>3. Work Experience</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>{t('editor.sectionExperience')}</h3>
             <ExperienceForm />
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>3. Projects</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>{t('editor.sectionProjects')}</h3>
             <ProjectsForm />
             
             <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>4. Education</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>{t('editor.sectionEducation')}</h3>
             <EducationForm />
             
             <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>5. Skills</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>{t('editor.sectionSkills')}</h3>
             <SkillsForm />
             
             <div style={{ margin: '3rem 0', height: '1px', background: 'var(--border-light)' }}></div>
             
-            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>6. Languages</h3>
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--accent-hover)' }}>{t('editor.sectionLanguages')}</h3>
             <LanguagesForm />
         </div>
       </div>

@@ -1,15 +1,18 @@
 import { motion } from 'framer-motion';
 import { Code, Download, ShieldCheck, Sparkles, RotateCcw } from 'lucide-react';
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 import HeroSection from '../components/HeroSection';
 import { useCVStore, initialData } from '../store/useCVStore';
 import ConfirmationModal from '../components/ui/ConfirmationModal';
+import LanguageSwitcher from '../components/LanguageSwitcher';
 
 interface LandingPageProps {
   onStart: () => void;
 }
 
 const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
+  const { t } = useTranslation();
   const [isResetModalOpen, setIsResetModalOpen] = React.useState(false);
   const data = useCVStore((state) => state.data);
   const hasData = JSON.stringify(data.personalInfo) !== JSON.stringify(initialData.personalInfo) || 
@@ -42,18 +45,18 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
   const features = [
     {
       icon: <Sparkles size={24} />,
-      title: 'AI-Powered Writing',
-      desc: 'Our AI analyzes job standards to optimize your bullet points and descriptions automatically.'
+      title: t('landing.feature1Title'),
+      desc: t('landing.feature1Desc')
     },
     {
       icon: <ShieldCheck size={24} />,
-      title: 'ATS-Optimized',
-      desc: 'Templates designed to be easily read by Applicant Tracking Systems of major global corporations.'
+      title: t('landing.feature2Title'),
+      desc: t('landing.feature2Desc')
     },
     {
       icon: <Download size={24} />,
-      title: 'Premium PDF Export',
-      desc: 'Export your resume to a professional, high-resolution PDF with pixel-perfect precision.'
+      title: t('landing.feature3Title'),
+      desc: t('landing.feature3Desc')
     },
   ];
 
@@ -87,8 +90,8 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         </div>
         <nav style={{ display: 'none' }} className="md-flex">
           <div style={{ display: 'flex', gap: '3rem' }}>
-            <a href="#" style={{ color: 'var(--text-secondary)', fontWeight: 600, transition: 'color 0.2s' }}>Features</a>
-            <a href="#" style={{ color: 'var(--text-secondary)', fontWeight: 600, transition: 'color 0.2s' }}>Pricing</a>
+            <a href="#" style={{ color: 'var(--text-secondary)', fontWeight: 600, transition: 'color 0.2s' }}>{t('landing.features')}</a>
+            <a href="#" style={{ color: 'var(--text-secondary)', fontWeight: 600, transition: 'color 0.2s' }}>{t('landing.pricing')}</a>
           </div>
         </nav>
         <div style={{ display: 'flex', gap: '1rem', alignItems: 'center' }}>
@@ -96,14 +99,15 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             <button 
               onClick={() => setIsResetModalOpen(true)} 
               className="icon-btn" 
-              title="Reset Progress"
+              title={t('landing.resetProgressTitle')}
               style={{ width: '40px', height: '40px', borderRadius: '12px' }}
             >
               <RotateCcw size={18} />
             </button>
           )}
+          <LanguageSwitcher />
           <button onClick={onStart} className="btn-primary" style={{ padding: '10px 24px', borderRadius: '12px' }}>
-            {hasData ? 'Resume Working' : 'Get Started'}
+            {hasData ? t('landing.btnResumeWorking') : t('landing.btnGetStarted')}
           </button>
         </div>
       </header>
@@ -119,10 +123,9 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
             viewport={{ once: true }}
             variants={containerVariants}
           >
-            <motion.h2 variants={itemVariants}>Crafted for Professionals</motion.h2>
+            <motion.h2 variants={itemVariants}>{t('landing.craftedForProfessionals')}</motion.h2>
             <motion.p variants={itemVariants}>
-              Stand out in the crowded job market with a resume that reflects your true potential.
-              Our tools are built with modern design principles and AI intelligence.
+              {t('landing.craftedSubtitle')}
             </motion.p>
           </motion.div>
 
@@ -145,25 +148,25 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
         <section className="sections-wrapper" style={{ background: 'rgba(255,255,255,0.01)', borderRadius: '60px' }}>
           <div className="section-header">
-            <h2>How it Works</h2>
-            <p>Three simple steps to your dream job.</p>
+            <h2>{t('landing.howItWorks')}</h2>
+            <p>{t('landing.howItWorksDesc')}</p>
           </div>
 
           <div className="features-grid" style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))' }}>
             <div className="feature-card" style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '3rem', fontWeight: 800, color: 'rgba(139, 92, 246, 0.2)', marginBottom: '1rem' }}>01</div>
-              <h3>Enter Your Details</h3>
-              <p>Fill in your experience, education, and skills in our intuitive, dark-mode editor.</p>
+              <h3>{t('landing.step1Title')}</h3>
+              <p>{t('landing.step1Desc')}</p>
             </div>
             <div className="feature-card" style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '3rem', fontWeight: 800, color: 'rgba(139, 92, 246, 0.2)', marginBottom: '1rem' }}>02</div>
-              <h3>AI Optimization</h3>
-              <p>Use our Magic Wand to refine your descriptions and make them stand out to recruiters.</p>
+              <h3>{t('landing.step2Title')}</h3>
+              <p>{t('landing.step2Desc')}</p>
             </div>
             <div className="feature-card" style={{ textAlign: 'center' }}>
               <div style={{ fontSize: '3rem', fontWeight: 800, color: 'rgba(139, 92, 246, 0.2)', marginBottom: '1rem' }}>03</div>
-              <h3>Download PDF</h3>
-              <p>Get a pixel-perfect, ATS-friendly resume ready to send to top-tier companies.</p>
+              <h3>{t('landing.step3Title')}</h3>
+              <p>{t('landing.step3Desc')}</p>
             </div>
           </div>
         </section>
@@ -171,13 +174,13 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
         <section className="hero-container" style={{ minHeight: '60vh' }}>
           <div className="hero-content" style={{ textAlign: 'center', margin: '0 auto' }}>
             <h2 style={{ fontSize: '3.5rem', marginBottom: '1.5rem' }}>
-              {hasData ? 'Ready to finish your' : 'Ready to land your'} <span className="text-gradient">{hasData ? 'masterpiece' : 'dream job'}</span>?
+              {hasData ? t('landing.readyFinishMasterpiece') : t('landing.readyLandDreamJob')} <span className="text-gradient">{hasData ? t('landing.masterpiece') : t('landing.dreamJob')}</span>?
             </h2>
             <p style={{ fontSize: '1.25rem', color: 'var(--text-secondary)', marginBottom: '3rem' }}>
-              {hasData ? 'You\'re just a few steps away from a world-class resume.' : 'Join 10,000+ professionals using ResumeAI to accelerate their careers.'}
+              {hasData ? t('landing.readySubtitleHasData') : t('landing.readySubtitleNoData')}
             </p>
             <button onClick={onStart} className="btn-primary shimmer" style={{ padding: '16px 40px', fontSize: '1.25rem', borderRadius: '18px' }}>
-              {hasData ? 'Continue Editing Your Resume' : 'Create Your Resume Now - It\'s Free'}
+              {hasData ? t('landing.btnContinueEditing') : t('landing.btnCreateNow')}
             </button>
           </div>
         </section>
@@ -185,21 +188,21 @@ const LandingPage: React.FC<LandingPageProps> = ({ onStart }) => {
 
       <footer>
         <div style={{ marginBottom: '2rem', display: 'flex', justifyContent: 'center', gap: '2rem' }}>
-          <a href="#" style={{ color: 'var(--text-secondary)' }}>Privacy Policy</a>
-          <a href="#" style={{ color: 'var(--text-secondary)' }}>Terms of Service</a>
-          <a href="#" style={{ color: 'var(--text-secondary)' }}>Contact Us</a>
+          <a href="#" style={{ color: 'var(--text-secondary)' }}>{t('landing.privacyPolicy')}</a>
+          <a href="#" style={{ color: 'var(--text-secondary)' }}>{t('landing.termsOfService')}</a>
+          <a href="#" style={{ color: 'var(--text-secondary)' }}>{t('landing.contactUs')}</a>
         </div>
-        <p>&copy; 2026 ResumeAI. Designed and Built by Lian.</p>
+        <p>{t('landing.footerText')}</p>
       </footer>
 
       <ConfirmationModal 
         isOpen={isResetModalOpen}
         onClose={() => setIsResetModalOpen(false)}
         onConfirm={handleReset}
-        title="Reset Progress?"
-        message="This will permanently delete all your resume data from this device. You will have to start from scratch."
-        confirmText="Yes, Reset"
-        cancelText="Keep Editing"
+        title={t('landing.resetProgressTitle')}
+        message={t('landing.resetProgressMessage')}
+        confirmText={t('landing.btnYesReset')}
+        cancelText={t('landing.btnKeepEditing')}
       />
     </div>
   );
