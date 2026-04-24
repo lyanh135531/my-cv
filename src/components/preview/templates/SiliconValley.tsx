@@ -114,9 +114,9 @@ const SiliconValley = ({ data }: TemplateProps) => {
                 <div className="cv-item-header">
                   <h4 className="cv-item-title">{project.name}</h4>
                   {project.link && (
-                    <a className="cv-item-date" href={normalizeUrl(project.link)} target="_blank" rel="noreferrer">
+                    <span className="cv-item-date">
                       {project.link}
-                    </a>
+                    </span>
                   )}
                 </div>
                 {project.technologies && project.technologies.length > 0 && (

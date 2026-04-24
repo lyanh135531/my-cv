@@ -106,7 +106,6 @@ export const initialData: CVData = {
   socialLinks: [
     { id: "1", label: "GitHub", url: "github.com/lyanh135531" },
     { id: "2", label: "LinkedIn", url: "linkedin.com/in/lyanh-lian" },
-    { id: "3", label: "Portfolio", url: "lylyanh.vercel.app" },
   ],
   experience: [
     {
@@ -125,7 +124,7 @@ export const initialData: CVData = {
       startDate: "Jun 2021",
       endDate: "Jun 2024",
       description:
-        "<ul><li>Developed and maintained functional modules for various outsourcing web applications, utilizing <strong>React/TypeScript</strong> for frontends and <strong>NestJS</strong> for backend services.</li><li>Assisted in integrating <strong>AI capabilities</strong> into client products by connecting <strong>OpenAI/Gemini APIs</strong> to automate text processing and data categorization tasks.</li><li>Contributed to the development of early-stage <strong>Python/FastAPI</strong> microservices, handling basic data extraction (like <strong>OCR</strong> integrations) to support backend AI workflows.</li><li>Collaborated with senior engineers to implement the company's <strong>Core Base Code</strong> architecture, ensuring <strong>reusable component libraries</strong> and consistent coding standards.</li><li>Wrote and optimized <strong>SQL queries</strong> and database schemas using <strong>PostgreSQL</strong> and <strong>Prisma ORM</strong> to improve system performance.</li></ul>",
+        "<ul><li>Architected and scaled backend services for enterprise management platforms (HRM, IDTASK, IDSPACE) using <strong>NestJS, Python</strong>, and <strong>PostgreSQL</strong>, ensuring high availability for thousands of daily corporate users.</li><li>Spearheaded the integration of <strong>Generative AI</strong> into the HRM system, developing an automated CV screening and candidate ranking pipeline utilizing <strong>OpenAI APIs</strong> and custom prompting strategies.</li><li>Engineered an intelligent task summarization and categorization microservice for IDTASK using <strong>FastAPI</strong> and <strong>LLMs</strong>, reducing manual project management overhead by 30%.</li><li>Optimized complex <strong>SQL queries</strong> and implemented caching layers via <strong>Prisma ORM</strong> and <strong>Redis</strong>, significantly improving data retrieval efficiency and reducing overall API response times by 40%.</li></ul>",
     },
   ],
   education: [
@@ -156,33 +155,18 @@ export const initialData: CVData = {
       link: "AUTOSERVER VIETNAM"
     },
     {
-      id: "5",
-      name: "Spiritus — YouTube Shorts Auto Pipeline",
-      description:
-        "End-to-end <strong>automated YouTube Shorts pipeline</strong>: AI topic generation → script writing → <strong>Edge TTS</strong> voiceover → <strong>Pollinations AI</strong> image generation → <strong>FFmpeg</strong> video compositing → <strong>YouTube upload</strong> with SEO optimization. Runs on scheduled <strong>GitHub Actions</strong> for daily content publishing.",
-      technologies: [
-        "Python",
-        "FFmpeg",
-        "Edge TTS",
-        "Pollinations AI",
-        "YouTube API",
-        "GitHub Actions",
-      ],
-      link: "github.com/lyanh135531",
-    },
-    {
       id: "6",
-      name: "Fullstack Web Platforms — Healthcare & Sports",
+      name: "IDSPACE",
       description:
-        "Multiple production web applications for <strong>healthcare management</strong> and <strong>sports platform</strong>. Features include rich CRUD operations, <strong>role-based access control</strong>, appointment scheduling, product catalogs, <strong>i18n localization</strong>, and responsive dashboards built with <strong>ShadCN/UI</strong> component library.",
+        "<strong>Role:</strong> Backend & AI Developer<br/>Architected the core backend services and integrated Applied AI features for IDSPACE, a large-scale corporate workspace platform.<br/><ul><li><strong>Backend Architecture:</strong> Engineered scalable RESTful APIs utilizing <strong>NestJS</strong> and <strong>PostgreSQL</strong>. Implemented robust authentication, <strong>Redis</strong> caching layers, and optimized <strong>Prisma ORM</strong> queries to support high-concurrency corporate traffic and minimize latency by 40%.</li><li><strong>Intelligent Data Extraction:</strong> Built an automated document processing microservice using <strong>Python</strong> and <strong>FastAPI</strong>. Integrated <strong>OCR engines</strong> and <strong>Gemini LLMs</strong> to extract structured entities (vendor names, dates, financial values) from unstructured PDF invoices and contracts.</li></ul>",
       technologies: [
-        "React",
         "NestJS",
-        "Prisma",
-        "PostgreSQL",
-        "TailwindCSS",
-        "ShadCN/UI",
+        "Python / FastAPI",
+        "PostgreSQL / Redis",
+        "Prisma ORM",
+        "OpenAI API"
       ],
+      link: "IDTEK",
     },
   ],
   skills: [
