@@ -101,7 +101,7 @@ export const initialData: CVData = {
     phone: "0917 534 909",
     location: "Ho Chi Minh City, Vietnam",
     summary:
-      "<strong>Fullstack Developer & AI Engineer</strong> with hands-on experience building <strong>web applications</strong> and <strong>GPU-accelerated ML inference systems</strong>. Proficient in <strong>React/Next.js</strong> for frontend, <strong>NestJS/FastAPI</strong> for backend, and <strong>NVIDIA Triton/TensorRT</strong> for model serving. Skilled in designing <strong>microservice architectures</strong>, <strong>Docker-based deployments</strong>, and <strong>RAG-powered AI chatbots</strong>. Passionate about bridging software engineering and applied machine learning to deliver end-to-end intelligent solutions.",
+      "<strong>AI Engineer</strong> with 3+ years of experience specializing in <strong>Deep Learning</strong>, <strong>Computer Vision</strong>, and <strong>Generative AI (LLMs)</strong>. Proven track record of architecting <strong>GPU-accelerated ML inference systems</strong> utilizing <strong>NVIDIA Triton Server</strong> and <strong>TensorRT (FP16)</strong> for high-throughput, low-latency deployments. Expertise in engineering end-to-end <strong>PyTorch training pipelines</strong> and building robust <strong>Agentic RAG frameworks</strong> to power hallucination-free corporate chatbots. Passionate about pushing the boundaries of applied machine learning and transforming complex AI models into scalable, production-ready solutions.",
   },
   socialLinks: [
     { id: "1", label: "GitHub", url: "github.com/lyanh135531" },
@@ -112,16 +112,16 @@ export const initialData: CVData = {
     {
       id: "1",
       company: "AUTOSERVER VIETNAM",
-      position: "Fullstack Developer & AI Engineer",
+      position: "AI Engineer",
       startDate: "Jul 2024",
       endDate: "Present",
       description:
-        "<ul><li>Designed and deployed a <strong>production ML inference platform</strong> using <strong>NVIDIA Triton Server</strong> and <strong>TensorRT (FP16)</strong>, serving vehicle classification and number plate detection models with optimized GPU utilization.</li><li>Built a <strong>multi-service AI pipeline</strong> (Vision Core) orchestrating <strong>API Gateway</strong>, <strong>YOLO</strong> object detection, <strong>ResNet</strong> classification, and <strong>OCR</strong> services via <strong>Docker Compose</strong> with GPU deployment profiles.</li><li>Developed an <strong>automated data input system</strong> integrating <strong>Keras</strong>-based image classification with <strong>GPT/Gemini</strong>-powered AI analysis, reducing manual data entry workload.</li><li>Architected a <strong>ResNet50 training pipeline</strong> with differential learning rates, <strong>mixed-precision training</strong>, weighted sampling, and <strong>TensorBoard</strong> monitoring for iterative model improvement.</li><li>Created a <strong>Test Lab platform</strong> (<strong>React</strong> + <strong>FastAPI</strong>) for ML model evaluation, featuring image labeling tools, dataset reporting dashboards, and real-time <strong>WebSocket</strong> updates.</li><li>Built a <strong>Docker monitoring solution</strong> for tracking container health, auto-restart policies, and <strong>multi-channel alerting</strong> across production servers.</li></ul>",
+        "<ul><li>Led the deployment of high-throughput computer vision models (YOLO, ResNet) to production via <strong>NVIDIA Triton Inference Server</strong>. Implemented <strong>TensorRT FP16 quantization</strong> and dynamic batching to maximize concurrent GPU (CUDA) utilization.</li><li>Architected scalable <strong>Python/FastAPI</strong> microservices to orchestrate multi-stage AI pipelines (object detection → plate censoring → OCR), integrating an <strong>LLM proxy gateway</strong> to route requests dynamically across model ensembles.</li><li>Engineered reproducible, automated <strong>PyTorch</strong> training workflows for highly imbalanced datasets. Applied <strong>AMP mixed-precision</strong>, <strong>WeightedRandomSampler</strong>, and differential learning rates to significantly boost classification accuracy.</li><li>Developed an advanced <strong>Agentic RAG Chatbot</strong> leveraging <strong>GPT/Gemini</strong> and custom <strong>LLM tool-routers</strong>. Implemented intent classification, contextual memory, and strict verification logic to guarantee hallucination-free corporate FAQ responses.</li><li>Built a centralized ML evaluation and active learning platform, integrating continuous dataset annotation tools and real-time performance tracking for iterative model improvements.</li><li>Designed custom <strong>MLOps tracking solutions</strong> to monitor distributed GPU container health, automating recovery policies to ensure high availability for critical inference nodes.</li></ul>",
     },
     {
       id: "2",
       company: "IDTEK",
-      position: "Fullstack Developer & AI Developer",
+      position: "Backend & AI Developer",
       startDate: "Jun 2021",
       endDate: "Jun 2024",
       description:
@@ -140,50 +140,20 @@ export const initialData: CVData = {
   projects: [
     {
       id: "1",
-      name: "ASOP ML Serving — GPU Inference Platform",
+      name: "ASNET",
       description:
-        "Production ML inference system serving <strong>vehicle view classification</strong> (7-class), <strong>car front/rear detection</strong> (ResNet), and <strong>vehicle context detection</strong> (YOLO) using <strong>NVIDIA Triton Server</strong> with <strong>TensorRT FP16</strong> optimization. Handles preprocessing, inference, and postprocessing (NMS, blur) through <strong>FastAPI</strong> endpoints.",
+        "<strong>Team Size:</strong> 5 members <br/>Engineered a production-grade enterprise AI ecosystem, bridging machine learning research with scalable backend microservices to automate complex business operations.<br/><ul><li><strong>High-Performance Inference:</strong> Deployed vehicle classification (ResNet50) and context detection (YOLO) models to a centralized <strong>NVIDIA Triton Inference Server</strong>. Applied <strong>TensorRT FP16 quantization</strong> and dynamic batching, orchestrating preprocessing, NMS, and blurring via optimized <strong>FastAPI</strong> endpoints.</li><li><strong>Microservice Architecture:</strong> Architected a multi-service AI mesh managed via <strong>Docker Compose</strong> deployment profiles. Built an <strong>Nginx API Gateway</strong> with an internal LLM proxy to orchestrate complex multi-stage workflows (e.g., object detection → plate censoring → OCR).</li><li><strong>Automated Training Pipelines:</strong> Engineered reproducible <strong>PyTorch</strong> training workflows for imbalanced datasets. Implemented <strong>AMP mixed-precision</strong>, differential learning rates, and <strong>WeightedRandomSampler</strong>, alongside <strong>TensorBoard</strong> tracking and automated Teams webhook epoch alerts.</li><li><strong>Agentic RAG Chatbot:</strong> Engineered an <strong>Agentic RAG</strong> corporate chatbot incorporating <strong>tool-calling routers</strong> for dynamic intent classification. Implemented strict FAQ best practices: <strong>contextual memory</strong> for multi-turn follow-ups, <strong>confidence-threshold fallbacks</strong>, and an internal <strong>self-verification layer</strong> to guarantee zero-hallucination policy responses.</li></ul>",
       technologies: [
-        "NVIDIA Triton",
-        "TensorRT",
-        "FastAPI",
-        "Docker Compose",
+        "Python",
+        "PyTorch / Keras",
+        "NVIDIA Triton Server",
+        "TensorRT (FP16)",
         "CUDA",
+        "Agentic RAG / LLMs",
+        "OpenAI API / Gemini",
+        "FastAPI / Docker Compose",
       ],
-    },
-    {
-      id: "2",
-      name: "ASOP ML Training — ResNet50 Pipeline",
-      description:
-        "Clean, reproducible <strong>ResNet50 training pipeline</strong> for multi-class image classification. Features <strong>differential learning rates</strong>, <strong>AMP mixed precision</strong>, weighted sampling for imbalanced datasets, gradient clipping, and automated <strong>Teams webhook</strong> notifications on training milestones.",
-      technologies: [
-        "PyTorch",
-        "ResNet50",
-        "TensorBoard",
-        "Docker",
-        "YAML Config",
-      ],
-    },
-    {
-      id: "3",
-      name: "Vision Core — Multi-Service AI System",
-      description:
-        "<strong>Microservice architecture</strong> for image classification, <strong>YOLO</strong>-based object detection, number plate censoring, and <strong>OCR</strong>. Features <strong>API Gateway</strong> routing, <strong>Docker Compose</strong> deployment profiles (vision/tools), and <strong>LLM proxy</strong> integration for multi-stage AI processing workflows.",
-      technologies: ["FastAPI", "YOLO", "ResNet", "Docker Compose", "Nginx"],
-    },
-    {
-      id: "4",
-      name: "ASOP Auto Input — AI-Powered Data Entry",
-      description:
-        "Automated data input system combining a <strong>Keras</strong> prediction service for image classification with an AI analysis service powered by <strong>GPT</strong> and <strong>Gemini</strong>. Eliminates manual data entry by intelligently categorizing and processing vehicle inspection images.",
-      technologies: [
-        "FastAPI",
-        "Keras",
-        "OpenAI API",
-        "Gemini",
-        "Docker",
-        "NVIDIA GPU",
-      ],
+      link: "AUTOSERVER VIETNAM"
     },
     {
       id: "5",
@@ -216,13 +186,12 @@ export const initialData: CVData = {
     },
   ],
   skills: [
-    { id: "1", name: "React / Next.js / TypeScript" },
-    { id: "2", name: "NestJS / FastAPI / Python" },
-    { id: "3", name: "NVIDIA Triton / TensorRT / YOLO" },
-    { id: "4", name: "Docker / Docker Compose / CI/CD" },
-    { id: "5", name: "PostgreSQL / Prisma / Redis" },
-    { id: "6", name: "PyTorch / Keras / ML Pipeline" },
-    { id: "7", name: "Microservices / System Design" },
+    { id: "1", name: "Machine Learning: PyTorch, Keras, YOLO, ResNet" },
+    { id: "2", name: "GPU Inference: NVIDIA Triton, TensorRT FP16, CUDA" },
+    { id: "3", name: "Generative AI: Agentic RAG, GPT/Gemini, Tool-calling" },
+    { id: "4", name: "Backend: Python, FastAPI, Microservices Architecture" },
+    { id: "5", name: "MLOps: Docker Compose, Nginx" },
+    { id: "6", name: "Databases: PostgreSQL, Redis, Vector DBs (Qdrant)" },
   ],
   languages: [
     { id: "1", name: "Vietnamese", proficiency: "Native" },
